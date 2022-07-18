@@ -5,10 +5,10 @@
 
 exp_name = "exp_htsat_pretrain" # the saved ckpt prefix name of the model 
 workspace = "/home/super/nic/HTS-Audio-Transformer" # the folder of your code
-dataset_path = "/home/Research/audioset" # the dataset path
-desed_folder = "/home/Research/DESED" # the desed file
+dataset_path = "/home/super/datasets-nas/ESC-50/" # the dataset path
+desed_folder = "/home/super/nic/HTS-Audio-Transformer/DESED" # the desed file
 
-dataset_type = "audioset" # "audioset" "esc-50" "scv2"
+dataset_type = "esc-50" # "audioset" "esc-50" "scv2"
 index_type = "full_train" # only works for audioset
 balanced_data = True # only works for audioset
 
@@ -25,7 +25,7 @@ esc_fold = 0 # just for esc dataset, select the fold you need for evaluation and
 debug = False
 
 random_seed = 970131 # 19970318 970131 12412 127777 1009 34047
-batch_size = 32 * 4 # batch size per GPU x GPU number , default is 32 x 4 = 128
+batch_size = 32 * 1 # batch size per GPU x GPU number , default is 32 x 4 = 128
 learning_rate = 1e-3 # 1e-4 also workable 
 max_epoch = 100
 num_workers = 3
@@ -35,7 +35,7 @@ lr_rate = [0.02, 0.05, 0.1]
 
 # these data preparation optimizations do not bring many improvements, so deprecated
 enable_token_label = False # token label
-class_map_path = "class_hier_map.npy"
+class_map_path = "esc-50-data.npy"
 class_filter = None 
 retrieval_index = [15382, 9202, 130, 17618, 17157, 17516, 16356, 6165, 13992, 9238, 5550, 5733, 1914, 1600, 3450, 13735, 11108, 3762, 
     9840, 11318, 8131, 4429, 16748, 4992, 16783, 12691, 4945, 8779, 2805, 9418, 2797, 14357, 5603, 212, 3852, 12666, 1338, 10269, 2388, 8260, 4293, 14454, 7677, 11253, 5060, 14938, 8840, 4542, 2627, 16336, 8992, 15496, 11140, 446, 6126, 10691, 8624, 10127, 9068, 16710, 10155, 14358, 7567, 5695, 2354, 8057, 17635, 133, 16183, 14535, 7248, 4560, 14429, 2463, 10773, 113, 2462, 9223, 4929, 14274, 4716, 17307, 4617, 2132, 11083, 1039, 1403, 9621, 13936, 2229, 2875, 17840, 9359, 13311, 9790, 13288, 4750, 17052, 8260, 14900]
@@ -89,21 +89,21 @@ ensemble_strides = []
 
 
 # weight average folder
-wa_folder = "/home/version_0/checkpoints/"
+wa_folder = "/home/super/nic/HTS-Audio-Transformer/checkpoints/"
 # weight average output filename
 wa_model_path = "HTSAT_AudioSet_Saved_x.ckpt"
 
 esm_model_pathes = [
-    "/home/Research/model_backup/AudioSet/HTSAT_AudioSet_Saved_1.ckpt",
-    "/home/Research/model_backup/AudioSet/HTSAT_AudioSet_Saved_2.ckpt",
-    "/home/Research/model_backup/AudioSet/HTSAT_AudioSet_Saved_3.ckpt",
-    "/home/Research/model_backup/AudioSet/HTSAT_AudioSet_Saved_4.ckpt",
-    "/home/Research/model_backup/AudioSet/HTSAT_AudioSet_Saved_5.ckpt",
-    "/home/Research/model_backup/AudioSet/HTSAT_AudioSet_Saved_6.ckpt"
+    "/home/super/nic/HTS-Audio-Transformer/HTSAT_AudioSet_Saved_1.ckpt",
+    "/home/super/nic/HTS-Audio-Transformer/HTSAT_AudioSet_Saved_2.ckpt",
+    "/home/super/nic/HTS-Audio-Transformer/HTSAT_AudioSet_Saved_3.ckpt",
+    "/home/super/nic/HTS-Audio-Transformer/HTSAT_AudioSet_Saved_4.ckpt",
+    "/home/super/nic/HTS-Audio-Transformer/HTSAT_AudioSet_Saved_5.ckpt",
+    "/home/super/nic/HTS-Audio-Transformer/HTSAT_AudioSet_Saved_6.ckpt"
 ]
 
 # for framewise localization
-heatmap_dir = "/home/Research/heatmap_output"
+heatmap_dir = "//home/super/nic/HTS-Audio-Transformer/heatmap_output"
 test_file = "htsat-test-ensemble"
 fl_local = False # indicate if we need to use this dataset for the framewise detection
 fl_dataset = "/home/Research/desed/desed_eval.npy"  

@@ -118,7 +118,7 @@ def process_idc(index_path, classes_num, filename):
 def clip_bce(pred, target):
     """Binary crossentropy loss.
     """
-    return F.binary_cross_entropy(pred, target)
+    return F.cross_entropy(pred, target)
     # return F.binary_cross_entropy(pred, target)
 
 

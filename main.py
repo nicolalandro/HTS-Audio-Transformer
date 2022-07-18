@@ -18,7 +18,7 @@ from datetime import datetime
 
 import torch
 import torch.optim as optim
-from torch.utils.data import DataLoader, sampler
+from torch.utils.data import DataLoader, sampler, Sampler
 from torch.utils.data.distributed import DistributedSampler
 
 from utils import create_folder, dump_config, process_idc, prepprocess_audio, init_hier_head
@@ -34,6 +34,9 @@ import pytorch_lightning as pl
 from pytorch_lightning.callbacks import ModelCheckpoint
 import warnings
 
+# create default process group
+import torch.distributed as dist
+dist.init_process_group("gloo", rank=0, world_size=1)
 
 
 warnings.filterwarnings("ignore")
@@ -46,7 +49,7 @@ class data_prep(pl.LightningDataModule):
         self.device_num = device_num
 
     def train_dataloader(self):
-        train_sampler = DistributedSampler(self.train_dataset, shuffle = False) if self.device_num > 1 else None
+        train_sampler = Sampler(self.train_dataset, shuffle = False) if self.device_num > 1 else None
         train_loader = DataLoader(
             dataset = self.train_dataset,
             num_workers = config.num_workers,
@@ -56,7 +59,7 @@ class data_prep(pl.LightningDataModule):
         )
         return train_loader
     def val_dataloader(self):
-        eval_sampler = DistributedSampler(self.eval_dataset, shuffle = False) if self.device_num > 1 else None
+        eval_sampler = Sampler(self.eval_dataset, shuffle = False) if self.device_num > 1 else None
         eval_loader = DataLoader(
             dataset = self.eval_dataset,
             num_workers = config.num_workers,
@@ -66,7 +69,7 @@ class data_prep(pl.LightningDataModule):
         )
         return eval_loader
     def test_dataloader(self):
-        test_sampler = DistributedSampler(self.eval_dataset, shuffle = False) if self.device_num > 1 else None
+        test_sampler = Sampler(self.eval_dataset, shuffle = False) if self.device_num > 1 else None
         test_loader = DataLoader(
             dataset = self.eval_dataset,
             num_workers = config.num_workers,
@@ -125,7 +128,7 @@ def esm_test():
         )
     audioset_data = data_prep(eval_dataset, eval_dataset, device_num)
     trainer = pl.Trainer(
-        deterministic=True,
+        deterministic=False,
         gpus = device_num, 
         max_epochs = config.max_epoch,
         auto_lr_find = True,    
@@ -209,7 +212,7 @@ def test():
         
     audioset_data = data_prep(eval_dataset, eval_dataset, device_num)
     trainer = pl.Trainer(
-        deterministic=True,
+        deterministic=False,
         gpus = device_num, 
         max_epochs = config.max_epoch,
         auto_lr_find = True,    
@@ -328,7 +331,7 @@ def train():
             mode = "max"
         )
     trainer = pl.Trainer(
-        deterministic=True,
+        deterministic=False,
         default_root_dir = checkpoint_dir,
         gpus = device_num, 
         val_check_interval = 0.1,
@@ -394,6 +397,7 @@ def train():
         print("unfound parameters: ", unfound_parameters)
         model.load_state_dict(ckpt, strict = False)
         model_params = dict(model.named_parameters())
+    # trainer.init_process_group()
     trainer.fit(model, audioset_data)
 
 
