@@ -33,9 +33,12 @@ model.load_state_dict(ckpt["state_dict"], strict=False)
 
 # file_path = '/home/super/datasets-nas/ESC-50/audio_32k/2-82367-A-10.wav'
 # file_path = '/home/super/datasets-nas/ESC-50/audio_32k/4-255371-A-47.wav'
-file_path = './examples_audio/4-255371-A-47.wav'
+# file_path = './examples_audio/4-255371-A-47.wav'
+file_path = './examples_audio/urban_sound_98223-7-10-0.wav'
 
-y, sr = librosa.load(file_path, sr=32000)
+
+y, sr = librosa.load(file_path, sr=None)
+y = librosa.resample(y, orig_sr=sr, target_sr=32000)
 in_val = np.array([y])
 
 result = model.inference(in_val)

@@ -58,6 +58,7 @@ class SEDWrapper(pl.LightningModule):
         self.device_type = next(self.parameters()).device
         self.eval()
         x = torch.from_numpy(x).float().to(self.device_type)
+        print(x.shape)
         output_dict = self.sed_model(x, None, True)
         for key in output_dict.keys():
             output_dict[key] = output_dict[key].detach().cpu().numpy()

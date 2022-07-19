@@ -39,15 +39,18 @@ model.load_state_dict(ckpt["state_dict"], strict=False)
 def inference(audio):
     sr, y = audio
     y = y/32767.0 # scipy vs librosa
+    if len(y.shape) != 1: # to mono
+        y = y[:,0]
+    y = librosa.resample(y, orig_sr=sr, target_sr=32000)
     in_val = np.array([y])
     result = model.inference(in_val)
-    # pred = result['clipwise_output'][0]
+    pred = result['clipwise_output'][0]
     # pred = np.exp(pred)/np.sum(np.exp(pred)) # softmax
-    # return {class_mapping[i]: float(p) for i, p in enumerate(pred)}
-    win_classes = np.argmax(result['clipwise_output'], axis=1)
-    win_class_index = win_classes[0]
-    win_class_name = class_mapping[win_class_index]
-    return str({win_class_name: result['clipwise_output'][0][win_class_index]})
+    return {class_mapping[i]: float(p) for i, p in enumerate(pred)}
+    # win_classes = np.argmax(result['clipwise_output'], axis=1)
+    # win_class_index = win_classes[0]
+    # win_class_name = class_mapping[win_class_index]
+    # return str({win_class_name: result['clipwise_output'][0][win_class_index]})
 
 
 title = "HTS-Audio-Transformer"
@@ -58,8 +61,8 @@ examples = [['test.mp3']]
 gr.Interface(
     inference,
     gr.inputs.Audio(type="numpy", label="Input"),
-    gr.outputs.Textbox(),
-    # gr.outputs.Label(),
+    # gr.outputs.Textbox(),
+    gr.outputs.Label(),
     title=title,
     description=description,
     # article=article,
