@@ -5,3 +5,4 @@ checkpoints
 results
 saved_training
 lightning_logs
+gradio_queue.db
