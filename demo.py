@@ -28,20 +28,12 @@ model = SEDWrapper(
     dataset=None
 )
 
-if config.resume_checkpoint is not None:
-    ckpt = torch.load(config.resume_checkpoint, map_location="cpu")
-    # ckpt["state_dict"].pop("sed_model.head.weight")
-    # ckpt["state_dict"].pop("sed_model.head.bias")
-    model.load_state_dict(ckpt["state_dict"], strict=False)
+ckpt = torch.load(config.resume_checkpoint, map_location="cpu")
+model.load_state_dict(ckpt["state_dict"], strict=False)
 
-in_val = {
-    'audio_name': ['1-100032-A-0.wav'],
-    'waveform': torch.rand(1, 320000),
-    'target': torch.tensor([0])
-}
-
-y, sr = librosa.load(
-    '/home/super/datasets-nas/ESC-50/audio_32k/2-82367-A-10.wav', sr=32000)
+# file_path = '/home/super/datasets-nas/ESC-50/audio_32k/2-82367-A-10.wav'
+file_path = '/home/super/datasets-nas/ESC-50/audio_32k/4-255371-A-47.wav'
+y, sr = librosa.load(file_path, sr=32000)
 in_val = np.array([y])
 
 result = model.inference(in_val)
