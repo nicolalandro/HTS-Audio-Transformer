@@ -16,3 +16,5 @@ MASTER_ADDR=localhost MASTER_PORT=29500 ROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=py
 ```
 MASTER_ADDR=localhost MASTER_PORT=29500 ROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python CUDA_VISIBLE_DEVICES=0 python main.py test
 ```
+* run demo ```python demo.py```
+* gradio app ```python demo_app.py```
