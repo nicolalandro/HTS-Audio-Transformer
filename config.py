@@ -17,7 +17,10 @@ loss_type = "clip_bce" #
 
 # trained from a checkpoint, or evaluate a single model 
 # resume_checkpoint = None 
+# resume_checkpoint = "/home/super/nic/HTS-Audio-Transformer/saved_training/HTSAT_ESC_exp=1_fold=1_acc=0.985.ckpt"
 resume_checkpoint = "/home/super/nic/HTS-Audio-Transformer/saved_training/HTSAT_ESC_exp=1_fold=1_acc=0.985.ckpt"
+# resume_checkpoint = "/home/super/nic/HTS-Audio-Transformer/results/exp_htsat_pretrain/checkpoint_1/lightning_logs/version_9/checkpoints/l-epoch=99-acc=0.490.ckpt"
+
 # "/home/Research/model_backup/AudioSet/HTSAT_AudioSet_Saved_1.ckpt"
  
 esc_fold = 0 # just for esc dataset, select the fold you need for evaluation and (+1) validation

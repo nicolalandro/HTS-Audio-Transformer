@@ -128,6 +128,8 @@ class SEDWrapper(pl.LightningModule):
         return new_sample 
 
     def test_step(self, batch, batch_idx):
+        print(batch['waveform'].shape)
+        exit()
         self.device_type = next(self.parameters()).device
         preds = []
         # time shifting optimization
