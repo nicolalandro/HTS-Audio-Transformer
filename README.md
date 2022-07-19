@@ -11,6 +11,8 @@
 * run train 
 ```
 MASTER_ADDR=localhost MASTER_PORT=29500 ROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python CUDA_VISIBLE_DEVICES=0 python main.py train
+# or with nohup
+MASTER_ADDR=localhost MASTER_PORT=29500 ROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python CUDA_VISIBLE_DEVICES=0 nohup python main.py train &> test2.log &
 ```
 * run test
 ```

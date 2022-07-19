@@ -29,9 +29,9 @@ esc_fold = 0 # just for esc dataset, select the fold you need for evaluation and
 debug = False
 
 random_seed = 970131 # 19970318 970131 12412 127777 1009 34047
-batch_size = 32 * 1 # batch size per GPU x GPU number , default is 32 x 4 = 128
+batch_size = 64 * 1 # batch size per GPU x GPU number , default is 32 x 4 = 128
 learning_rate = 1e-3 # 1e-4 also workable 
-max_epoch = 100
+max_epoch = 300
 num_workers = 3
 
 lr_scheduler_epoch = [10,20,30]
