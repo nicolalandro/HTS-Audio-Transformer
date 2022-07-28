@@ -6,6 +6,7 @@
 exp_name = "exp_htsat_pretrain" # the saved ckpt prefix name of the model 
 workspace = "/home/super/nic/HTS-Audio-Transformer" # the folder of your code
 dataset_path = "/home/super/datasets-nas/UrbanSound8K/" # the dataset path
+dataset_file_name = "urbansound32k-data.npy"
 desed_folder = "/home/super/nic/HTS-Audio-Transformer/DESED" # the desed file
 
 dataset_type = "esc-50" # "audioset" "esc-50" "scv2"

@@ -262,7 +262,7 @@ def train():
         train_idc = np.load(config.index_type + "_idc.npy", allow_pickle = True)
         eval_idc = np.load("eval_idc.npy", allow_pickle = True)
     elif config.dataset_type == "esc-50":
-        full_dataset = np.load(os.path.join(config.dataset_path, "esc-50-data.npy"), allow_pickle = True)
+        full_dataset = np.load(os.path.join(config.dataset_path, config.dataset_file_name), allow_pickle = True)
     elif config.dataset_type == "scv2":
         train_set = np.load(os.path.join(config.dataset_path, "scv2_train.npy"), allow_pickle = True)
         test_set = np.load(os.path.join(config.dataset_path, "scv2_test.npy"), allow_pickle = True)
