@@ -2,6 +2,7 @@
 # knutchen@ucsd.edu
 # HTS-AT: A HIERARCHICAL TOKEN-SEMANTIC AUDIO TRANSFORMER FOR SOUND CLASSIFICATION AND DETECTION
 # The configuration for training the model
+import os
 
 exp_name = "exp_htsat_pretrain" # the saved ckpt prefix name of the model 
 workspace = "/home/super/nic/HTS-Audio-Transformer" # the folder of your code
@@ -25,8 +26,8 @@ resume_checkpoint = None
 
 # "/home/Research/model_backup/AudioSet/HTSAT_AudioSet_Saved_1.ckpt"
  
-esc_fold = 0 # just for esc dataset, select the fold you need for evaluation and (+1) validation
-
+esc_fold = os.getenv("FOLD", 0) # just for esc dataset, select the fold you need for evaluation and (+1) validation
+print('-------> USE FOLD:', esc_fold)
 
 debug = False
 
