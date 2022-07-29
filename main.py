@@ -39,6 +39,10 @@ import torch.distributed as dist
 dist.init_process_group("gloo", rank=0, world_size=1)
 
 
+config.esc_fold = int(os.getenv("FOLD", 0))
+print('-------> USE FOLD:', config.esc_fold)
+
+
 warnings.filterwarnings("ignore")
 
 class data_prep(pl.LightningDataModule):

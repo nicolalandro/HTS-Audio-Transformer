@@ -1,3 +1,5 @@
+source venv/bin/activate
+
 for i in 1 2 3 4 5
 do
     MASTER_ADDR=localhost MASTER_PORT=29500 FOLD=$i\

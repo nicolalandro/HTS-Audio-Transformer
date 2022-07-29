@@ -1,106 +1,20 @@
 nohup: ignoring input
+./experiments.sh: 1: source: not found
 Global seed set to 970131
-Traceback (most recent call last):
-  File "main.py", line 433, in <module>
-    main()
-  File "main.py", line 419, in main
-    train()
-  File "main.py", line 277, in train
-    dump_config(config, os.path.join(exp_dir, config.exp_name), False)
-  File "/home/super/nic/HTS-Audio-Transformer/utils.py", line 94, in dump_config
-    json.dump(config_json, f ,indent=4)
-  File "/usr/lib/python3.8/json/__init__.py", line 179, in dump
-    for chunk in iterable:
-  File "/usr/lib/python3.8/json/encoder.py", line 431, in _iterencode
-    yield from _iterencode_dict(o, _current_indent_level)
-  File "/usr/lib/python3.8/json/encoder.py", line 405, in _iterencode_dict
-    yield from chunks
-  File "/usr/lib/python3.8/json/encoder.py", line 438, in _iterencode
-    o = _default(o)
-  File "/usr/lib/python3.8/json/encoder.py", line 179, in default
-    raise TypeError(f'Object of type {o.__class__.__name__} '
-TypeError: Object of type module is not JSON serializable
-Global seed set to 970131
-Traceback (most recent call last):
-  File "main.py", line 433, in <module>
-    main()
-  File "main.py", line 419, in main
-    train()
-  File "main.py", line 277, in train
-    dump_config(config, os.path.join(exp_dir, config.exp_name), False)
-  File "/home/super/nic/HTS-Audio-Transformer/utils.py", line 94, in dump_config
-    json.dump(config_json, f ,indent=4)
-  File "/usr/lib/python3.8/json/__init__.py", line 179, in dump
-    for chunk in iterable:
-  File "/usr/lib/python3.8/json/encoder.py", line 431, in _iterencode
-    yield from _iterencode_dict(o, _current_indent_level)
-  File "/usr/lib/python3.8/json/encoder.py", line 405, in _iterencode_dict
-    yield from chunks
-  File "/usr/lib/python3.8/json/encoder.py", line 438, in _iterencode
-    o = _default(o)
-  File "/usr/lib/python3.8/json/encoder.py", line 179, in default
-    raise TypeError(f'Object of type {o.__class__.__name__} '
-TypeError: Object of type module is not JSON serializable
-Global seed set to 970131
-Traceback (most recent call last):
-  File "main.py", line 433, in <module>
-    main()
-  File "main.py", line 419, in main
-    train()
-  File "main.py", line 277, in train
-    dump_config(config, os.path.join(exp_dir, config.exp_name), False)
-  File "/home/super/nic/HTS-Audio-Transformer/utils.py", line 94, in dump_config
-    json.dump(config_json, f ,indent=4)
-  File "/usr/lib/python3.8/json/__init__.py", line 179, in dump
-    for chunk in iterable:
-  File "/usr/lib/python3.8/json/encoder.py", line 431, in _iterencode
-    yield from _iterencode_dict(o, _current_indent_level)
-  File "/usr/lib/python3.8/json/encoder.py", line 405, in _iterencode_dict
-    yield from chunks
-  File "/usr/lib/python3.8/json/encoder.py", line 438, in _iterencode
-    o = _default(o)
-  File "/usr/lib/python3.8/json/encoder.py", line 179, in default
-    raise TypeError(f'Object of type {o.__class__.__name__} '
-TypeError: Object of type module is not JSON serializable
-Global seed set to 970131
-Traceback (most recent call last):
-  File "main.py", line 433, in <module>
-    main()
-  File "main.py", line 419, in main
-    train()
-  File "main.py", line 277, in train
-    dump_config(config, os.path.join(exp_dir, config.exp_name), False)
-  File "/home/super/nic/HTS-Audio-Transformer/utils.py", line 94, in dump_config
-    json.dump(config_json, f ,indent=4)
-  File "/usr/lib/python3.8/json/__init__.py", line 179, in dump
-    for chunk in iterable:
-  File "/usr/lib/python3.8/json/encoder.py", line 431, in _iterencode
-    yield from _iterencode_dict(o, _current_indent_level)
-  File "/usr/lib/python3.8/json/encoder.py", line 405, in _iterencode_dict
-    yield from chunks
-  File "/usr/lib/python3.8/json/encoder.py", line 438, in _iterencode
-    o = _default(o)
-  File "/usr/lib/python3.8/json/encoder.py", line 179, in default
-    raise TypeError(f'Object of type {o.__class__.__name__} '
-TypeError: Object of type module is not JSON serializable
-Global seed set to 970131
-Traceback (most recent call last):
-  File "main.py", line 433, in <module>
-    main()
-  File "main.py", line 419, in main
-    train()
-  File "main.py", line 277, in train
-    dump_config(config, os.path.join(exp_dir, config.exp_name), False)
-  File "/home/super/nic/HTS-Audio-Transformer/utils.py", line 94, in dump_config
-    json.dump(config_json, f ,indent=4)
-  File "/usr/lib/python3.8/json/__init__.py", line 179, in dump
-    for chunk in iterable:
-  File "/usr/lib/python3.8/json/encoder.py", line 431, in _iterencode
-    yield from _iterencode_dict(o, _current_indent_level)
-  File "/usr/lib/python3.8/json/encoder.py", line 405, in _iterencode_dict
-    yield from chunks
-  File "/usr/lib/python3.8/json/encoder.py", line 438, in _iterencode
-    o = _default(o)
-  File "/usr/lib/python3.8/json/encoder.py", line 179, in default
-    raise TypeError(f'Object of type {o.__class__.__name__} '
-TypeError: Object of type module is not JSON serializable
+INFO:root:total dataset size: 7844
+INFO:root:queue regenerated:[1585, 4391, 267, 5753, 5406]
+INFO:root:total dataset size: 888
+GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name      | Type                   | Params
+-----------------------------------------------------
+0 | sed_model | HTSAT_Swin_Transformer | 28.7 M
+-----------------------------------------------------
+27.6 M    Trainable params
+1.1 M     Non-trainable params
+28.7 M    Total params
+114.657   Total estimated model params size (MB)
+INFO:root:queue regenerated:[4582, 1872, 2654, 833, 6380]
