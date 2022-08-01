@@ -17,3 +17,7 @@ LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [2]
 1.1 M     Non-trainable params
 28.7 M    Total params
 114.657   Total estimated model params size (MB)
+INFO:root:queue regenerated:[2996, 2168, 27, 3653, 2201]
+INFO:root:queue regenerated:[6711, 5078, 4707, 3062, 2289]
+INFO:root:queue regenerated:[5385, 2487, 6942, 7371, 6083]
+INFO:root:queue regenerated:[2524, 1797, 3548, 2316, 6893]
