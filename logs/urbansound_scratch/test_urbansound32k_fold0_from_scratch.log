@@ -1,0 +1,4 @@
+-------> USE FOLD: 0
+each batch size: 64
+Using ESC
+Training: 0it [00:00, ?it/s]Training:   0%|          | 0/263 [00:00<?, ?it/s]Epoch 0:   0%|          | 0/263 [00:00<?, ?it/s] Epoch 0:   0%|          | 1/263 [00:01<05:25,  1.24s/it]Epoch 0:   0%|          | 1/263 [00:01<05:25,  1.24s/it, loss=2.31, v_num=19, loss_step=2.310]Epoch 0:   1%|          | 2/263 [00:01<04:19,  1.00it/s, loss=2.31, v_num=19, loss_step=2.310]Epoch 0:   1%|          | 2/263 [00:01<04:20,  1.00it/s, loss=2.3, v_num=19, loss_step=2.300] Epoch 0:   1%|          | 3/263 [00:02<03:58,  1.09it/s, loss=2.3, v_num=19, loss_step=2.300]Epoch 0:   1%|          | 3/263 [00:02<03:58,  1.09it/s, loss=2.3, v_num=19, loss_step=2.300]Epoch 0:   2%|▏         | 4/263 [00:03<03:46,  1.15it/s, loss=2.3, v_num=19, loss_step=2.300]Epoch 0:   2%|▏         | 4/263 [00:03<03:46,  1.15it/s, loss=2.3, v_num=19, loss_step=2.310]

@@ -1,5 +1,5 @@
 nohup: ignoring input
-./experiments.sh: 1: source: not found
+./experiments3.sh: 1: source: not found
 Global seed set to 970131
 INFO:root:total dataset size: 7859
 INFO:root:queue regenerated:[1585, 4391, 267, 5753, 5406]
@@ -7,7 +7,7 @@ INFO:root:total dataset size: 873
 GPU available: True, used: True
 TPU available: False, using: 0 TPU cores
 IPU available: False, using: 0 IPUs
-LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [1]
 
   | Name      | Type                   | Params
 -----------------------------------------------------
@@ -17,8 +17,3 @@ LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
 1.1 M     Non-trainable params
 28.7 M    Total params
 114.657   Total estimated model params size (MB)
-INFO:root:queue regenerated:[1852, 1369, 767, 2784, 1500]
-INFO:root:queue regenerated:[5783, 6436, 1315, 3948, 2531]
-INFO:root:queue regenerated:[5585, 7718, 3193, 2807, 2084]
-INFO:root:queue regenerated:[1906, 6896, 2953, 2533, 565]
-INFO:root:queue regenerated:[3653, 3887, 4850, 589, 2464]
