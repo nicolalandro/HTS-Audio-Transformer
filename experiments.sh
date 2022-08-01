@@ -1,6 +1,6 @@
 source venv/bin/activate
 
-for i in 1 2 3 4 5
+for i in 0 1 2 3 4
 do
     MASTER_ADDR=localhost MASTER_PORT=29500 FOLD=$i\
     ROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python CUDA_VISIBLE_DEVICES=0 \

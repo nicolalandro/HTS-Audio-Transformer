@@ -1,4 +1,4 @@
-with open("test_urbansound32k_fold0_from_scratch.log", "r") as f:
+with open("test_urbansound32k_fold1_from_scratch.log", "r") as f:
     text = f.read()
 
 text_accs = text.split("{'acc':")[1:]
