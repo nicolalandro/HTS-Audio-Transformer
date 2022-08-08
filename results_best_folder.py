@@ -1,10 +1,11 @@
 from audioop import avg
 import os
 
-folder = "logs"
+folder = "logs/urbansound_audioset"
 best_accs = []
 for f in os.listdir(folder):
-    with open(os.path.join(folder, f), "r") as f:
+    file_path = os.path.join(folder, f)
+    with open(file_path, "r") as f:
         text = f.read()
 
     text_accs = text.split("{'acc':")[1:]
@@ -15,9 +16,12 @@ for f in os.listdir(folder):
         )
         for t in text_accs
     ]
-
-    best_acc = sorted(text_accs, key=lambda x: x[1])[-1]
-    best_accs.append(best_acc[1])
-    print(best_acc)
+    try:
+        best_acc = sorted(text_accs, key=lambda x: x[1])[-1]
+        best_accs.append(best_acc[1])
+        print(file_path, best_acc)
+    except Exception as e:
+        print(file_path, e)
+        
 
 print('avg:', sum(best_accs)/len(best_accs))
