@@ -1,7 +1,7 @@
 from audioop import avg
 import os
 
-folder = "logs/urbansound_scratch"
+folder = "logs/urbansound_audioset"
 best_accs = []
 for f in os.listdir(folder):
     file_path = os.path.join(folder, f)
