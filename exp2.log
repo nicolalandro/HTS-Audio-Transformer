@@ -679,3 +679,123 @@ INFO:root:queue regenerated:[7160, 1326, 5086, 1735, 2285]
 INFO:root:queue regenerated:[258, 957, 6510, 6871, 3604]
 INFO:root:queue regenerated:[4503, 2403, 7764, 2326, 5094]
 INFO:root:queue regenerated:[3263, 3826, 62, 3474, 403]
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/queues.py", line 239, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.8/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/home/super/nic/HTS-Audio-Transformer/venv/lib/python3.8/site-packages/torch/multiprocessing/reductions.py", line 329, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.8/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.8/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.8/multiprocessing/resource_sharer.py", line 77, in register
+    self._start()
+  File "/usr/lib/python3.8/multiprocessing/resource_sharer.py", line 130, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.8/multiprocessing/connection.py", line 442, in __init__
+    address = address or arbitrary_address(family)
+  File "/usr/lib/python3.8/multiprocessing/connection.py", line 76, in arbitrary_address
+    return tempfile.mktemp(prefix='listener-', dir=util.get_temp_dir())
+  File "/usr/lib/python3.8/multiprocessing/util.py", line 146, in get_temp_dir
+    tempdir = tempfile.mkdtemp(prefix='pymp-')
+  File "/usr/lib/python3.8/tempfile.py", line 486, in mkdtemp
+    prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+  File "/usr/lib/python3.8/tempfile.py", line 256, in _sanitize_params
+    dir = gettempdir()
+  File "/usr/lib/python3.8/tempfile.py", line 425, in gettempdir
+    tempdir = _get_default_tempdir()
+  File "/usr/lib/python3.8/tempfile.py", line 357, in _get_default_tempdir
+    raise FileNotFoundError(_errno.ENOENT,
+FileNotFoundError: [Errno 2] No usable temporary directory found in ['/tmp', '/var/tmp', '/usr/tmp', '/home/super/nic/HTS-Audio-Transformer']
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/queues.py", line 239, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.8/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/home/super/nic/HTS-Audio-Transformer/venv/lib/python3.8/site-packages/torch/multiprocessing/reductions.py", line 329, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.8/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.8/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.8/multiprocessing/resource_sharer.py", line 77, in register
+    self._start()
+  File "/usr/lib/python3.8/multiprocessing/resource_sharer.py", line 130, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.8/multiprocessing/connection.py", line 442, in __init__
+    address = address or arbitrary_address(family)
+  File "/usr/lib/python3.8/multiprocessing/connection.py", line 76, in arbitrary_address
+    return tempfile.mktemp(prefix='listener-', dir=util.get_temp_dir())
+  File "/usr/lib/python3.8/multiprocessing/util.py", line 146, in get_temp_dir
+    tempdir = tempfile.mkdtemp(prefix='pymp-')
+  File "/usr/lib/python3.8/tempfile.py", line 486, in mkdtemp
+    prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+  File "/usr/lib/python3.8/tempfile.py", line 256, in _sanitize_params
+    dir = gettempdir()
+  File "/usr/lib/python3.8/tempfile.py", line 425, in gettempdir
+    tempdir = _get_default_tempdir()
+  File "/usr/lib/python3.8/tempfile.py", line 357, in _get_default_tempdir
+    raise FileNotFoundError(_errno.ENOENT,
+FileNotFoundError: [Errno 2] No usable temporary directory found in ['/tmp', '/var/tmp', '/usr/tmp', '/home/super/nic/HTS-Audio-Transformer']
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/queues.py", line 239, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.8/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/home/super/nic/HTS-Audio-Transformer/venv/lib/python3.8/site-packages/torch/multiprocessing/reductions.py", line 329, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.8/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.8/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.8/multiprocessing/resource_sharer.py", line 77, in register
+    self._start()
+  File "/usr/lib/python3.8/multiprocessing/resource_sharer.py", line 130, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.8/multiprocessing/connection.py", line 442, in __init__
+    address = address or arbitrary_address(family)
+  File "/usr/lib/python3.8/multiprocessing/connection.py", line 76, in arbitrary_address
+    return tempfile.mktemp(prefix='listener-', dir=util.get_temp_dir())
+  File "/usr/lib/python3.8/multiprocessing/util.py", line 146, in get_temp_dir
+    tempdir = tempfile.mkdtemp(prefix='pymp-')
+  File "/usr/lib/python3.8/tempfile.py", line 486, in mkdtemp
+    prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+  File "/usr/lib/python3.8/tempfile.py", line 256, in _sanitize_params
+    dir = gettempdir()
+  File "/usr/lib/python3.8/tempfile.py", line 425, in gettempdir
+    tempdir = _get_default_tempdir()
+  File "/usr/lib/python3.8/tempfile.py", line 357, in _get_default_tempdir
+    raise FileNotFoundError(_errno.ENOENT,
+FileNotFoundError: [Errno 2] No usable temporary directory found in ['/tmp', '/var/tmp', '/usr/tmp', '/home/super/nic/HTS-Audio-Transformer']
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/multiprocessing/queues.py", line 239, in _feed
+    obj = _ForkingPickler.dumps(obj)
+  File "/usr/lib/python3.8/multiprocessing/reduction.py", line 51, in dumps
+    cls(buf, protocol).dump(obj)
+  File "/home/super/nic/HTS-Audio-Transformer/venv/lib/python3.8/site-packages/torch/multiprocessing/reductions.py", line 329, in reduce_storage
+    df = multiprocessing.reduction.DupFd(fd)
+  File "/usr/lib/python3.8/multiprocessing/reduction.py", line 198, in DupFd
+    return resource_sharer.DupFd(fd)
+  File "/usr/lib/python3.8/multiprocessing/resource_sharer.py", line 53, in __init__
+    self._id = _resource_sharer.register(send, close)
+  File "/usr/lib/python3.8/multiprocessing/resource_sharer.py", line 77, in register
+    self._start()
+  File "/usr/lib/python3.8/multiprocessing/resource_sharer.py", line 130, in _start
+    self._listener = Listener(authkey=process.current_process().authkey)
+  File "/usr/lib/python3.8/multiprocessing/connection.py", line 442, in __init__
+    address = address or arbitrary_address(family)
+  File "/usr/lib/python3.8/multiprocessing/connection.py", line 76, in arbitrary_address
+    return tempfile.mktemp(prefix='listener-', dir=util.get_temp_dir())
+  File "/usr/lib/python3.8/multiprocessing/util.py", line 146, in get_temp_dir
+    tempdir = tempfile.mkdtemp(prefix='pymp-')
+  File "/usr/lib/python3.8/tempfile.py", line 486, in mkdtemp
+    prefix, suffix, dir, output_type = _sanitize_params(prefix, suffix, dir)
+  File "/usr/lib/python3.8/tempfile.py", line 256, in _sanitize_params
+    dir = gettempdir()
+  File "/usr/lib/python3.8/tempfile.py", line 425, in gettempdir
+    tempdir = _get_default_tempdir()
+  File "/usr/lib/python3.8/tempfile.py", line 357, in _get_default_tempdir
+    raise FileNotFoundError(_errno.ENOENT,
+FileNotFoundError: [Errno 2] No usable temporary directory found in ['/tmp', '/var/tmp', '/usr/tmp', '/home/super/nic/HTS-Audio-Transformer']
