@@ -6,8 +6,8 @@ from sed_model import SEDWrapper
 import librosa
 import numpy as np
 
-class_mapping = ['dog', 'rooster', 'pig', 'cow', 'frog', 'cat', 'hen', 'insects', 'sheep', 'crow', 'rain', 'sea_waves', 'crackling_fire', 'crickets', 'chirping_birds', 'water_drops', 'wind', 'pouring_water', 'toilet_flush', 'thunderstorm', 'crying_baby', 'sneezing', 'clapping', 'breathing', 'coughing', 'footsteps', 'laughing',
-                 'brushing_teeth', 'snoring', 'drinking_sipping', 'door_wood_knock', 'mouse_click', 'keyboard_typing', 'door_wood_creaks', 'can_opening', 'washing_machine', 'vacuum_cleaner', 'clock_alarm', 'clock_tick', 'glass_breaking', 'helicopter', 'chainsaw', 'siren', 'car_horn', 'engine', 'train', 'church_bells', 'airplane', 'fireworks', 'hand_saw']
+class_mapping = ['airplane', 'car_horn', 'chainsaw', 'children_playing', 'church_bells', 'dog_bark',
+                 'drilling', 'engine', 'fireworks', 'hand_saw', 'helicopter', 'jackhammer', 'siren', 'street_music', 'train']
 
 sed_model = HTSAT_Swin_Transformer(
     spec_size=config.htsat_spec_size,
@@ -28,13 +28,14 @@ model = SEDWrapper(
     dataset=None
 )
 
-ckpt = torch.load(config.resume_checkpoint, map_location="cpu")
+# ckpt = torch.load(config.resume_checkpoint, map_location="cpu")
+ckpt = torch.load('saved_training/us+esc50_l-epoch=18-acc=0.923.ckpt', map_location="cpu")
 model.load_state_dict(ckpt["state_dict"], strict=False)
 
 # file_path = '/home/super/datasets-nas/ESC-50/audio_32k/2-82367-A-10.wav'
-# file_path = '/home/super/datasets-nas/ESC-50/audio_32k/4-255371-A-47.wav'
+file_path = '/home/super/datasets-nas/ESC-50/audio_32k/4-255371-A-47.wav'
 # file_path = './examples_audio/4-255371-A-47.wav'
-file_path = './examples_audio/urban_sound_98223-7-10-0.wav'
+# file_path = './examples_audio/urban_sound_98223-7-10-0.wav'
 
 
 y, sr = librosa.load(file_path, sr=None)
