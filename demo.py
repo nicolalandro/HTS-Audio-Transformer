@@ -6,9 +6,17 @@ from model.htsat import HTSAT_Swin_Transformer
 from sed_model import SEDWrapper
 import librosa
 import numpy as np
+import json
 
-class_mapping = ['airplane', 'car_horn', 'chainsaw', 'children_playing', 'church_bells', 'dog_bark',
-                 'drilling', 'engine', 'fireworks', 'hand_saw', 'helicopter', 'jackhammer', 'siren', 'street_music', 'train']
+SR = 24000
+MAX_SEC = 10
+max_audio_len = MAX_SEC * SR
+
+class_mapping_json = '/home/super/datasets-nas/audio_merged_dataset/esc50_urbansound_audioset_softech/classes.json'
+
+with open(class_mapping_json, 'r') as f:
+  class_mapping = json.load(f) # {"0": "Air brake", "1": "Air horn, truck horn",
+
 
 sed_model = HTSAT_Swin_Transformer(
     spec_size=config.htsat_spec_size,
@@ -30,7 +38,10 @@ model = SEDWrapper(
 )
 
 # ckpt = torch.load(config.resume_checkpoint, map_location="cpu")
-ckpt = torch.load('saved_training/us+esc50_l-epoch=18-acc=0.923.ckpt', map_location="cpu")
+model_path = 'saved_training/us+esc50_32k_l-epoch=18-acc=0.923.ckpt'
+# model_path = 'saved_training/us+esc50_8k_l-epoch=17-acc=0.920.ckpt'
+
+ckpt = torch.load(model_path, map_location="cpu")
 model.load_state_dict(ckpt["state_dict"], strict=False)
 
 # file_path = '/home/super/datasets-nas/ESC-50/audio_32k/2-82367-A-10.wav'
@@ -58,13 +69,23 @@ file_path = '/home/super/datasets-nas/audio_merged_dataset/esc50_urbansound_audi
 # children_playing:       (  10/1244)  0.80%
 #           engine:       (   7/1244)  0.56%
 #         dog_bark:       (   6/1244)  0.48%
-file_path = '/home/super/datasets-nas/audio/softech/Motosega'
+# file_path = '/home/super/datasets-nas/audio/softech/Motosega'
 #         drilling: (   3/3   ) 100.00%
+# file_path = '/home/super/datasets-nas/audio/softech/Aereo'
 # file_path = './examples_audio/4-255371-A-47.wav'
 # file_path = './examples_audio/urban_sound_98223-7-10-0.wav'
 
 results = {}
 num_wav = 0
+
+def inference(in_val):
+    result = model.inference(in_val)
+    win_classes = np.argmax(result['clipwise_output'], axis=1)
+    win_class_index = win_classes[0]
+    win_class_name = class_mapping[str(win_class_index)]
+    win_class_prob = result['clipwise_output'][0][win_class_index]
+    return win_class_name, win_class_prob
+
 
 def predict(file_path):
     global num_wav 
@@ -73,23 +94,27 @@ def predict(file_path):
     if len(y) < 100:
         print(f"Input signal length={len(y)} is too small")
         return
-    y = librosa.resample(y, orig_sr=sr, target_sr=32000)
+    y = librosa.resample(y, orig_sr=sr, target_sr=SR)
     #print(f"audio len: {len(y)}; sampling rate: 32000")
-    # se il file audio è troppo lungo da errore nella trasformazione del audio in immagine
+    # se il file audio è troppo lungo (len(y) > 300000) da errore nella trasformazione del audio in immagine
     # File "/home/super/nic/HTS-Audio-Transformer/model/htsat.py", line 781, in forward
     # x = self.reshape_wav2img(x)
     # RuntimeError: Input and output sizes should be greater than 0, but got input (H: 0, W: 64) output (H: 1024, W: 64)
-    in_val = np.array([y[:30000]])
-
-    result = model.inference(in_val)
-    win_classes = np.argmax(result['clipwise_output'], axis=1)
-    win_class_index = win_classes[0]
-    win_class_name = class_mapping[win_class_index]
-
     print(file_path)
-    print(win_class_name, result['clipwise_output'][0][win_class_index])
-    results[win_class_name] = results.get(win_class_name, 0) + 1
-    num_wav += 1
+    if len(y) > max_audio_len:
+        for start in range(0, len(y), max_audio_len):
+            in_val = np.array([y[start:start+max_audio_len]])
+            win_class_name, win_class_prob = inference(in_val)
+
+            print(win_class_name, win_class_prob)
+            results[win_class_name] = results.get(win_class_name, 0) + 1
+            num_wav += 1
+    else:
+        in_val = np.array([y])
+        win_class_name, win_class_prob = inference(in_val)
+        print(win_class_name, win_class_prob)
+        results[win_class_name] = results.get(win_class_name, 0) + 1
+        num_wav += 1
 
 
 if os.path.isfile(file_path):
@@ -99,4 +124,4 @@ elif os.path.isdir(file_path):
         predict(os.path.join(file_path, f))
     print(file_path)
     for key, value in results.items():
-        print(f"{key:>20}:({value:>4}/{num_wav:<4}) {value/num_wav*100:.2f}%")
+        print(f"{key:>20}: ({value:>4}/{num_wav:<4}) {value/num_wav*100:3.2f}%")

@@ -3,13 +3,13 @@
 # HTS-AT: A HIERARCHICAL TOKEN-SEMANTIC AUDIO TRANSFORMER FOR SOUND CLASSIFICATION AND DETECTION
 # The configuration for training the model
 
-exp_name = "exp_htsat_pretrain" # the saved ckpt prefix name of the model 
+exp_name = "exp_htsat_pretrain_softech_16khz" # the saved ckpt prefix name of the model 
 workspace = "/home/super/nic/HTS-Audio-Transformer" # the folder of your code
-dataset_path = "/home/super/datasets-nas/audio_merged_dataset/esc50_urbansound" # the dataset path
-dataset_file_name = "esc50_urbansound.npy"
+dataset_path = "/home/super/datasets-nas/audio_merged_dataset/esc50_urbansound_audioset_softech" # the dataset path
+dataset_file_name = "esc50_urbansound_audioset_softech.npy"
 desed_folder = "/home/super/nic/HTS-Audio-Transformer/DESED" # the desed file
 
-dataset_type = "esc-50" # "audioset" "esc-50" "scv2"
+dataset_type = "scv2" # "audioset" "esc-50" "scv2"
 index_type = "full_train" # only works for audioset
 balanced_data = True # only works for audioset
 
@@ -41,7 +41,7 @@ lr_rate = [0.02, 0.05, 0.1]
 
 # these data preparation optimizations do not bring many improvements, so deprecated
 enable_token_label = False # token label
-class_map_path = "esc50_urbansound.npy"
+class_map_path = "esc50_urbansound_audioset_softech.npy"
 class_filter = None 
 retrieval_index = [15382, 9202, 130, 17618, 17157, 17516, 16356, 6165, 13992, 9238, 5550, 5733, 1914, 1600, 3450, 13735, 11108, 3762, 
     9840, 11318, 8131, 4429, 16748, 4992, 16783, 12691, 4945, 8779, 2805, 9418, 2797, 14357, 5603, 212, 3852, 12666, 1338, 10269, 2388, 8260, 4293, 14454, 7677, 11253, 5060, 14938, 8840, 4542, 2627, 16336, 8992, 15496, 11140, 446, 6126, 10691, 8624, 10127, 9068, 16710, 10155, 14358, 7567, 5695, 2354, 8057, 17635, 133, 16183, 14535, 7248, 4560, 14429, 2463, 10773, 113, 2462, 9223, 4929, 14274, 4716, 17307, 4617, 2132, 11083, 1039, 1403, 9621, 13936, 2229, 2875, 17840, 9359, 13311, 9790, 13288, 4750, 17052, 8260, 14900]
@@ -56,7 +56,7 @@ enable_repeat_mode = False # repeat the spectrogram / reshape the spectrogram
 enable_tscam = True # enbale the token-semantic layer
 
 # for signal processing
-sample_rate = 32000 # 16000 for scv2, 32000 for audioset and esc-50
+sample_rate = 16000 # 16000 for scv2, 32000 for audioset and esc-50
 clip_samples = sample_rate * 10 # audio_set 10-sec clip
 window_size = 1024
 hop_size = 320 # 160 for scv2, 320 for audioset and esc-50
@@ -66,7 +66,7 @@ fmax = 14000
 shift_max = int(clip_samples * 0.5)
 
 # for data collection
-classes_num = 15 # esc: 50 | audioset: 527 | scv2: 35
+classes_num = 48 # esc: 50 | audioset: 527 | scv2: 35
 patch_size = (25, 4) # deprecated
 crop_size = None # int(clip_samples * 0.5) deprecated
 
