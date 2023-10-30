@@ -1,4 +1,5 @@
 import os
+from shutil import copyfile
 import config
 
 import torch
@@ -8,7 +9,7 @@ import librosa
 import numpy as np
 import json
 
-SR = 24000
+SR = 16000
 MAX_SEC = 10
 max_audio_len = MAX_SEC * SR
 
@@ -38,7 +39,8 @@ model = SEDWrapper(
 )
 
 # ckpt = torch.load(config.resume_checkpoint, map_location="cpu")
-model_path = 'saved_training/us+esc50_32k_l-epoch=18-acc=0.923.ckpt'
+# model_path = 'saved_training/us+esc50_32k_l-epoch=18-acc=0.923.ckpt'
+model_path = 'saved_training/us+esc50+AS+softech_16k_l-epoch=275-acc=0.542.ckpt'
 # model_path = 'saved_training/us+esc50_8k_l-epoch=17-acc=0.920.ckpt'
 
 ckpt = torch.load(model_path, map_location="cpu")
@@ -71,9 +73,24 @@ file_path = '/home/super/datasets-nas/audio_merged_dataset/esc50_urbansound_audi
 #         dog_bark:       (   6/1244)  0.48%
 # file_path = '/home/super/datasets-nas/audio/softech/Motosega'
 #         drilling: (   3/3   ) 100.00%
-# file_path = '/home/super/datasets-nas/audio/softech/Aereo'
-# file_path = './examples_audio/4-255371-A-47.wav'
-# file_path = './examples_audio/urban_sound_98223-7-10-0.wav'
+expected_class = "" 
+file_path = '/home/super/datasets-nas/audio/softech/flessibile-motori'  
+file_path = '/home/super/datasets-nas/audio/softech/musica-cane-aereo'  
+file_path = '/home/super/datasets-nas/audio/softech/tagliaerba-aereo'
+file_path = '/home/super/datasets-nas/audio/softech/Aereo,Motosega' 
+file_path = '/home/super/datasets-nas/audio/softech/Musica-aereo'  
+file_path = '/home/super/datasets-nas/audio/softech/pioggia'            
+file_path = '/home/super/datasets-nas/audio/softech/smontato-palo'
+#file_path = '/home/super/datasets-nas/audio/softech/Moto';expected_class = "Motorcycle"
+#file_path = '/home/super/datasets-nas/audio/softech/Cane';expected_class = "dog_bark"
+#file_path = '/home/super/datasets-nas/audio/softech/Ambulanza';expected_class = "Emergency vehicle"
+#file_path = '/home/super/datasets-nas/audio/softech/Musica';expected_class = "street_music"
+#file_path = '/home/super/datasets-nas/audio/softech/Motosega';expected_class = "chainsaw"
+#file_path = '/home/super/datasets-nas/audio/softech/Elicottero';expected_class = "helicopter"
+#file_path = '/home/super/datasets-nas/audio/softech/Fuochi-artificio';expected_class = "Fireworks"
+#file_path = '/home/super/datasets-nas/audio/softech/antifurto';expected_class = "Car alarm"  
+file_path = '/home/super/datasets-nas/audio/softech/SIRENA';expected_class = "siren"  
+#file_path = '/home/super/datasets-nas/audio/softech/Aereo';expected_class = "airplane"
 
 results = {}
 num_wav = 0
@@ -104,7 +121,15 @@ def predict(file_path):
     if len(y) > max_audio_len:
         for start in range(0, len(y), max_audio_len):
             in_val = np.array([y[start:start+max_audio_len]])
+            if in_val.size < SR:
+                print(f"Input signal length={len(in_val)} is too short")
+                break
             win_class_name, win_class_prob = inference(in_val)
+
+            if expected_class != "" and win_class_name != expected_class:
+                dst_dir = os.path.join("selected", expected_class, os.path.basename(file_path))
+                os.makedirs(os.path.dirname(dst_dir), exist_ok=True)
+                copyfile(file_path, dst_dir)
 
             print(win_class_name, win_class_prob)
             results[win_class_name] = results.get(win_class_name, 0) + 1
@@ -112,6 +137,10 @@ def predict(file_path):
     else:
         in_val = np.array([y])
         win_class_name, win_class_prob = inference(in_val)
+        if expected_class != "" and win_class_name != expected_class:
+            dst_dir = os.path.join("selected", expected_class, os.path.basename(file_path))
+            os.makedirs(os.path.dirname(dst_dir), exist_ok=True)
+            copyfile(file_path, dst_dir)
         print(win_class_name, win_class_prob)
         results[win_class_name] = results.get(win_class_name, 0) + 1
         num_wav += 1

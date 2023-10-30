@@ -9,7 +9,7 @@ from tqdm import tqdm
 train_path = '/home/super/datasets-nas/audio_merged_dataset/esc50_urbansound_audioset_softech/train'
 test_path = '/home/super/datasets-nas/audio_merged_dataset/esc50_urbansound_audioset_softech/test'
 out_class_json = '/home/super/datasets-nas/audio_merged_dataset/esc50_urbansound_audioset_softech/classes.json'
-out_prepared_dataset = '/home/super/datasets-nas/audio_merged_dataset/esc50_urbansound_audioset_softech/esc50_urbansound_audioset_softech.npy'
+#out_prepared_dataset = '/home/super/datasets-nas/audio_merged_dataset/esc50_urbansound_audioset_softech/esc50_urbansound_audioset_softech.npy'
 dataset_path = "/home/super/datasets-nas/audio_merged_dataset/esc50_urbansound_audioset_softech"
 # for scv2 format
 train_set = "scv2_train.npy"

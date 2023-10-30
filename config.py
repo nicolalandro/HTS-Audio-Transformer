@@ -19,7 +19,8 @@ loss_type = "clip_bce" #
 # trained from a checkpoint, or evaluate a single model 
 # resume_checkpoint = None 
 # resume_checkpoint = "/home/super/nic/HTS-Audio-Transformer/saved_training/HTSAT_ESC_exp=1_fold=1_acc=0.985.ckpt"
-resume_checkpoint = "/home/super/nic/HTS-Audio-Transformer/saved_training/HTSAT_AudioSet_Saved_6.ckpt"
+# resume_checkpoint = "/home/super/nic/HTS-Audio-Transformer/saved_training/HTSAT_AudioSet_Saved_6.ckpt"
+resume_checkpoint = "/home/super/nic/HTS-Audio-Transformer/saved_training/us+esc50+AS+softech_16k_l-epoch=275-acc=0.542.ckpt"
 
 # resume_checkpoint = "/home/super/nic/HTS-Audio-Transformer/saved_training/HTSAT_ESC_exp=1_fold=1_acc=0.985.ckpt"
 # resume_checkpoint = "/home/super/nic/HTS-Audio-Transformer/results/exp_htsat_pretrain/checkpoint_1/lightning_logs/version_9/checkpoints/l-epoch=99-acc=0.490.ckpt"
